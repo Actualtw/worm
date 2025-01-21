@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Worm"
-run/main_scene="res://Levels/test_level.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+run/main_scene="res://Levels/Level1.tscn"
+config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
@@ -29,4 +29,4 @@ project/assembly_name="Worm"
 [rendering]
 
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.424535, 0.162632, 0.502091, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
