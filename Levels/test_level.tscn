@@ -5,11 +5,13 @@
 [ext_resource type="Script" path="res://Code/Examples/ProtoMover.cs" id="3_ukqeg"]
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(-1, 7)
 script = ExtResource("2_raiyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(72, 71)
 texture = ExtResource("1_hdaet")
 script = ExtResource("3_ukqeg")
-_direction = Vector2(100, 100)
+MoveBetweenPoints = true
+_speed = 20
+StartPosition = Vector2(20, 20)
+TargetPosition = Vector2(50, 50)
