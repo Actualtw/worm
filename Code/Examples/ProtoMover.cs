@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Drawing;
 
 public partial class ProtoMover : Sprite2D
 {
