@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Worm"
-run/main_scene="res://Levels/Snake.tscn"
+run/main_scene="res://Levels/Level1.tscn"
 config/features=PackedStringArray("4.3", "C#", "Mobile")
 run/delta_smoothing=false
 config/icon="res://icon.svg"

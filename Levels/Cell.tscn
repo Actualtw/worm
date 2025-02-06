@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh6653ejkfaai"]
+
+[ext_resource type="Texture2D" uid="uid://c48d74sdnx1hc" path="res://Art/Grid.png" id="1_03r6n"]
+[ext_resource type="Script" path="res://Code/Examples/Cell.cs" id="2_ep4av"]
+
+[node name="Cell" type="Sprite2D"]
+position = Vector2(8, 8)
+texture = ExtResource("1_03r6n")
+hframes = 4
+vframes = 4
+script = ExtResource("2_ep4av")
