@@ -5,46 +5,55 @@ namespace SnakeGame;
 
 public partial class Snake : Sprite2D
 {
-	[Export]public float Speed;
-	public float _idle;
-	Vector2 _direction = new Vector2(1, 0);
-	// Called when the node enters the scene tree for the first time.
+	[Export]public int Speed;
+	private Vector2I _direction = new Vector2I(0, 0);
+	private bool _isMoving = false;
+
 	public override void _Ready()
 	{
+		Position = new Vector2I(96, 96);
 	}
 
 	public void Move()
 	{
-		if (Input.IsKeyPressed(Key.Right) || Input.IsKeyPressed(Key.D))
+
+		if (Input.IsActionJustPressed("Right"))
 		{
-			_direction = new Vector2(1, 0);
-			_idle = Speed;
+			_direction = new Vector2I(1, 0);
+			_isMoving = true;
 		}
 
-		if (Input.IsKeyPressed(Key.Left) || Input.IsKeyPressed(Key.A))
+		if (Input.IsActionJustPressed("Left"))
 		{
-			_direction = new Vector2(-1, 0);
-			_idle = Speed;
+			_direction = new Vector2I(-1, 0);
+			_isMoving = true;
 		}
 
-		if (Input.IsKeyPressed(Key.Up) || Input.IsKeyPressed(Key.W))
+		if (Input.IsActionJustPressed("Up"))
 		{
-			_direction = new Vector2(0, -1);
-			_idle = Speed;
+			_direction = new Vector2I(0, -1);
+			_isMoving = true;
 		}
 
-		if (Input.IsKeyPressed(Key.Down) || Input.IsKeyPressed(Key.S))
+		if (Input.IsActionJustPressed("Down"))
 		{
-			_direction = new Vector2(0, 1);
-			_idle = Speed;
+			_direction = new Vector2I(0, 1);
+			_isMoving = true;
 		}
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _PhysicsProcess(double delta)
+    public override void _Process(double delta)
+    {
+        Move();
+    }
+
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _PhysicsProcess(double delta)
 	{
-		_idle = 0;
-		Move();
-		GlobalPosition += _direction * (float)delta * _idle;
+		if (_isMoving)
+		{
+			Position += new Vector2(_direction.X * Speed, _direction.Y * Speed);
+			_isMoving = false;
+		}
 	}
 }

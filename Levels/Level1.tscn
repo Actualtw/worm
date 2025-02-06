@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://bngbht5uui7la"]
+[gd_scene load_steps=7 format=4 uid="uid://bngbht5uui7la"]
 
 [ext_resource type="TileSet" uid="uid://cmwqs8fhksbi8" path="res://Art/MapTiles.tres" id="1_foa7g"]
 [ext_resource type="PackedScene" uid="uid://b1uf3k6h03276" path="res://Levels/Grid.tscn" id="1_kk8tr"]
+[ext_resource type="PackedScene" uid="uid://hgx1ffpyu78d" path="res://Levels/Snake.tscn" id="3_v1xby"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wvl53"]
 load_path = "res://.godot/imported/Grid.png-e96233ab289d8fc4684e9fd65584ff0e.ctex"
@@ -44,3 +45,5 @@ tile_map_data = PackedByteArray("AAD5/wYAAAACAAAAAAD5//v/AAACAAEAAAD5//z/AAACAAE
 tile_set = SubResource("TileSet_kbs1v")
 
 [node name="Grid" parent="." instance=ExtResource("1_kk8tr")]
+
+[node name="Node2D" parent="." instance=ExtResource("3_v1xby")]

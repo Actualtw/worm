@@ -58,5 +58,16 @@ namespace SnakeGame
 				}
 			}
 		}
+
+		public bool GetWorldPosition(Vector2I gridPosition, out Vector2 worldPosition)
+		{
+			if (gridPosition.X >= 0 && gridPosition.X < Width && gridPosition.Y >= 0 && gridPosition.Y < Height)
+			{
+				worldPosition = _cells[gridPosition.X, gridPosition.Y].Position;
+				return true;
+			}
+			worldPosition = Vector2I.Zero;
+			return false;
+		}
 	}
 }
