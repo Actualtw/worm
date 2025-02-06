@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cku8vjrlu4263"]
+
+[ext_resource type="Texture2D" uid="uid://c48d74sdnx1hc" path="res://Art/Grid.png" id="1_tay8u"]
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(13, 12)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_tay8u")
+hframes = 4
+vframes = 4
