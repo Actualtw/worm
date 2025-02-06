@@ -46,4 +46,4 @@ tile_set = SubResource("TileSet_kbs1v")
 
 [node name="Grid" parent="." instance=ExtResource("1_kk8tr")]
 
-[node name="Node2D" parent="." instance=ExtResource("3_v1xby")]
+[node name="Snake" parent="." instance=ExtResource("3_v1xby")]

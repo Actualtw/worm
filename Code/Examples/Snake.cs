@@ -20,24 +20,28 @@ public partial class Snake : Sprite2D
 		if (Input.IsActionJustPressed("Right"))
 		{
 			_direction = new Vector2I(1, 0);
+			RotationDegrees = 90;
 			_isMoving = true;
 		}
 
 		if (Input.IsActionJustPressed("Left"))
 		{
 			_direction = new Vector2I(-1, 0);
+			RotationDegrees = -90;
 			_isMoving = true;
 		}
 
 		if (Input.IsActionJustPressed("Up"))
 		{
 			_direction = new Vector2I(0, -1);
+			RotationDegrees = 0;
 			_isMoving = true;
 		}
 
 		if (Input.IsActionJustPressed("Down"))
 		{
 			_direction = new Vector2I(0, 1);
+			RotationDegrees = 180;
 			_isMoving = true;
 		}
 	}
