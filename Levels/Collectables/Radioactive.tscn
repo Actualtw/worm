@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0yhh8re40350"]
+
+[ext_resource type="Texture2D" uid="uid://dlnsy5va6nnwf" path="res://Art/Collectables/radioactive.png" id="1_bv2n3"]
+
+[node name="Radioactive" type="Sprite2D"]
+texture = ExtResource("1_bv2n3")
