@@ -31,6 +31,6 @@ namespace SnakeGame
 			return false;
 		}
 
-		public abstract void Collect(Snake snake);
+		public abstract void Collect();
 	}
 }

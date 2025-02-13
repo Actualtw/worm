@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SnakeGame;
 
@@ -8,11 +9,14 @@ public partial class Snake : Node2D, ICellOccupier
 	[Export]public int Speed = 1;
 	private bool _isMoving = false;
 	private Vector2I _currentPosition = new Vector2I(5, 5);
+	public Vector2I GridPosition
+	{
+		get { return _currentPosition; }
+	}
     public CellOccupierType Type
 	{
 		get { return CellOccupierType.Snake; }
 	}
-
     public enum Direction
 	{
 		None = 0,
@@ -75,8 +79,6 @@ public partial class Snake : Node2D, ICellOccupier
 			Position = worldPosition;
 			RotationDegrees = GetRotation(direction);
 		}
-
-
 	}
 
 	private Direction ReadInput()
@@ -112,5 +114,7 @@ public partial class Snake : Node2D, ICellOccupier
         {
 			Move(direction);
 		}
+
+		Level.Current.CheckForCollectables();
     }
 }

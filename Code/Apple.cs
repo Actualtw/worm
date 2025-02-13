@@ -6,7 +6,7 @@ namespace SnakeGame;
 public partial class Apple : Collectable
 {
     [Export] private int _score = 10;
-    public override void Collect(Snake snake)
+    public override void Collect()
     {
         // TODO: Kasvata matoa
 

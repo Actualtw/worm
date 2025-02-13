@@ -15,12 +15,15 @@ namespace SnakeGame
 
 		[Export] private string _snakeScenePath = "res://Levels/Snake.tscn";
 		[Export] private string _appleScenePath = "res://Levels/Collectables/Apple.tscn";
+		[Export] private string _nuclearWasteScenePath = "res://Levels/Collectables/NuclearWaste.tscn";
 		private PackedScene _snakeScene = null;
 		private PackedScene _appleScene = null;
+		private PackedScene _nuclearWasteScene = null;
 		private int _score = 0;
 		private Grid _grid = null;
 		private Snake _snake = null;
 		private Apple _apple = null;
+		private NuclearWaste _nuclearWaste = null;
 
 		public int Score
 		{
@@ -68,6 +71,8 @@ namespace SnakeGame
 				Score = 0;
 
 				ReplaceApple();
+
+				ReplaceNuclearWaste();
 		}
 
 		private Snake CreateSnake()
@@ -111,6 +116,48 @@ namespace SnakeGame
 			{
 				_apple.SetPosition(freeCell.GridPosition);
 			}
+		}
+
+		public void ReplaceNuclearWaste()
+		{
+			if (_nuclearWaste != null)
+			{
+				Grid.ReleaseCell(_nuclearWaste.GridPosition);
+				_nuclearWaste.QueueFree();
+				_nuclearWaste = null;
+			}
+
+			if (_nuclearWasteScene == null)
+			{
+				_nuclearWasteScene = ResourceLoader.Load<PackedScene>(_nuclearWasteScenePath);
+				if (_nuclearWasteScene == null)
+				{
+					GD.PrintErr("Can't load nuclear waste scene!");
+				}
+			}
+
+			_nuclearWaste = _nuclearWasteScene.Instantiate<NuclearWaste>();
+			AddChild(_nuclearWaste);
+
+			Cell freeCell = Grid.GetRandomFreeCell();
+			if (Grid.OccupyCell(_nuclearWaste, freeCell.GridPosition))
+			{
+				_nuclearWaste.SetPosition(freeCell.GridPosition);
+			}
+		}
+
+		public void CheckForCollectables()
+		{
+			if (_nuclearWaste.GridPosition == _snake.GridPosition)
+			{
+				_nuclearWaste.Collect();
+			}
+		}
+
+		public void KillSnake()
+		{
+			_snake.QueueFree();
+			_snake = null;
 		}
 	}
 }

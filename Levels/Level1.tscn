@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://bngbht5uui7la"]
 
 [ext_resource type="TileSet" uid="uid://cmwqs8fhksbi8" path="res://Art/MapTiles.tres" id="1_foa7g"]
-[ext_resource type="PackedScene" uid="uid://b1uf3k6h03276" path="res://Levels/Grid.tscn" id="1_kk8tr"]
+[ext_resource type="PackedScene" uid="uid://cku8vjrlu4263" path="res://Levels/Grid.tscn" id="1_kk8tr"]
 [ext_resource type="Script" path="res://Code/Level.cs" id="1_tqh7x"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wvl53"]

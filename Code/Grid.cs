@@ -38,7 +38,7 @@ namespace SnakeGame
 			if (Height % 2 != 0)
 			{
 				offset.Y -= halfNode.Y;
-			} 
+			}
 
 			// Lataa Cell-scene. Luomme tästä uuden olion kutakin ruutua kohden.
 			PackedScene cellScene = ResourceLoader.Load<PackedScene>(_cellScenePath);
