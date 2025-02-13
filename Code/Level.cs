@@ -66,8 +66,19 @@ namespace SnakeGame
 				_snake.QueueFree();
 				_snake = null;
 			}
-				_snake = CreateSnake();
 
+			if (_apple != null)
+			{
+				_apple.QueueFree();
+				_apple = null;
+			}
+
+			if (_nuclearWaste != null)
+			{
+				_nuclearWaste.QueueFree();
+				_nuclearWaste = null;
+			}
+				_snake = CreateSnake();
 				AddChild(_snake);
 
 				Score = 0;
@@ -151,10 +162,21 @@ namespace SnakeGame
 
 		public void CheckForCollectables()
 		{
-			if (_nuclearWaste.GridPosition == _snake.GridPosition)
+			if (_snake == null || _apple == null || _nuclearWaste == null)
+			{
+				return;
+			}
+
+			if (_nuclearWaste != null && _nuclearWaste.GridPosition == _snake.GridPosition)
 			{
 				_nuclearWaste.Collect();
+				_nuclearWaste.QueueFree();
 				_nuclearWaste = null;
+			}
+
+			if (_apple != null && _apple.GridPosition == _snake.GridPosition)
+			{
+				_apple.Collect();
 			}
 		}
 
@@ -180,5 +202,14 @@ namespace SnakeGame
 				ResetGame();
 			}
 		}
-	}
+
+        public override void _Process(double delta)
+        {
+            if (_snake == null)
+			{
+				return;
+			}
+			CheckForCollectables();
+        }
+    }
 }

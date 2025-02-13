@@ -6,9 +6,11 @@ namespace SnakeGame;
 
 public partial class Snake : Node2D, ICellOccupier
 {
-	[Export]public int Speed = 1;
+	[Export] private float Speed = 1;
 	private bool _isMoving = false;
 	private Vector2I _currentPosition = new Vector2I(5, 5);
+	private Direction _currentDirection = Direction.Up;
+	private Timer _moveTimer;
 	public Vector2I GridPosition
 	{
 		get { return _currentPosition; }
@@ -32,6 +34,10 @@ public partial class Snake : Node2D, ICellOccupier
 		{
 			Position = worldPosition;
 		}
+
+		_moveTimer = GetNode<Timer>("Timer");
+		_moveTimer.Timeout += OnMoveTimerTimeout;
+		_moveTimer.Start(1.0f / Speed);
 	}
 
 	private Vector2I GetNextGridPosition(Direction direction, Vector2I currentPosition)
@@ -112,9 +118,15 @@ public partial class Snake : Node2D, ICellOccupier
 		Direction direction = ReadInput();
 		if (direction != Direction.None)
         {
-			Move(direction);
+			_currentDirection = direction;
 		}
-
-		Level.Current.CheckForCollectables();
     }
+
+	public void OnMoveTimerTimeout()
+	{
+		if (_currentDirection != Direction.None)
+		{
+			Move(_currentDirection);
+		}
+	}
 }
