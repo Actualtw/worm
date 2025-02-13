@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 
 namespace SnakeGame
 {
@@ -19,6 +20,7 @@ namespace SnakeGame
 		private PackedScene _snakeScene = null;
 		private PackedScene _appleScene = null;
 		private PackedScene _nuclearWasteScene = null;
+		private bool _waitingForRestart = false;
 		private int _score = 0;
 		private Grid _grid = null;
 		private Snake _snake = null;
@@ -133,6 +135,7 @@ namespace SnakeGame
 				if (_nuclearWasteScene == null)
 				{
 					GD.PrintErr("Can't load nuclear waste scene!");
+					return;
 				}
 			}
 
@@ -151,6 +154,7 @@ namespace SnakeGame
 			if (_nuclearWaste.GridPosition == _snake.GridPosition)
 			{
 				_nuclearWaste.Collect();
+				_nuclearWaste = null;
 			}
 		}
 
@@ -158,6 +162,23 @@ namespace SnakeGame
 		{
 			_snake.QueueFree();
 			_snake = null;
+			WaitForContinue();
+		}
+
+		public void WaitForContinue()
+		{
+			_waitingForRestart = true;
+		}
+
+		public override void _Input(InputEvent @event)
+		{
+			if (!_waitingForRestart) return; // Jos ei odoteta restartia, ei tehdä mitään.
+
+			if (@event is InputEventKey { Pressed: true, Keycode: Key.Space })
+			{
+				_waitingForRestart = false;
+				ResetGame();
+			}
 		}
 	}
 }
